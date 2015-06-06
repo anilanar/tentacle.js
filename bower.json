@@ -1,0 +1,30 @@
+{
+  "name": "tentacle.mock",
+  "version": "0.0.1",
+  "homepage": "https://github.com/anilanar/tentacle.mock",
+  "authors": [
+    "Anil Anar <anilanar@hotmail.com>"
+  ],
+  "description": "Auto-mock dependencies for angular tests",
+  "main": "src/index.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "angular",
+    "automatic",
+    "mock",
+    "test"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "~3.9.3"
+  }
+}
