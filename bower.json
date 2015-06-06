@@ -1,11 +1,11 @@
 {
-  "name": "tentacle.mock",
-  "version": "0.0.1",
-  "homepage": "https://github.com/anilanar/tentacle.mock",
+  "name": "tentacle",
+  "version": "0.0.2",
+  "homepage": "https://github.com/anilanar/tentacle",
   "authors": [
     "Anil Anar <anilanar@hotmail.com>"
   ],
-  "description": "Auto-mock dependencies for angular tests",
+  "description": "Auto mock/inject dependencies for Angular tests",
   "main": "src/index.js",
   "moduleType": [
     "globals"
@@ -14,6 +14,8 @@
     "angular",
     "automatic",
     "mock",
+    "inject",
+    "dependency",
     "test"
   ],
   "license": "MIT",

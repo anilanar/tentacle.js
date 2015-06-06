@@ -1,8 +1,14 @@
 (function (window, angular) {
-  window.tentacle = window.tentacle || {};
+  window.tentacle = {};
+
   var mockExceptions = [
     '$http',
     '$httpBackend',
+    '$rootScope',
+    '$q'
+  ];
+
+  var globalInjects = [
     '$rootScope',
     '$q'
   ];
@@ -19,6 +25,16 @@
     _.forEach(mocksObject, provideValue);
     return mocksObject;
   };
+
+  window.tentacle.inject = function () {
+    _.forEach(globalInjects, injectDependency);
+  };
+
+  function injectDependency(dependency) {
+    angular.mock.inject([dependency, function (_dependency_) {
+      window[dependency] = _dependency_;
+    }]);
+  }
 
   function getDependencies(module, name) {
     var invokeQueue = angular.mdoule(moduleName)._invokeQueue;
