@@ -26,6 +26,9 @@
     window.tentacle.inject = inject;
     window.tentacle.injectAll = injectAll;
     window.tentacle.controller = controller;
+    window.tentacle.directive = directive;
+    window.tentacle.service = service;
+    window.tentacle.factory = service;
   });
 
   afterEach(function () {
@@ -65,10 +68,9 @@
   }
 
   function directive(module, name, override, defaultMock) {
-    window.tentacle.mock(module, name, override, defaultMock);
+    var mocksObject = window.tentacle.mock(module, name, override, defaultMock);
     window.tentacle.inject();
     injectDependency('$compile');
-    var mocksObject = createMocksObject(module, name, override, defaultMock);
     addToWindow('$scope', $rootScope.$new());
     _.extend(mocksObject, {
       $scope: window.$scope
@@ -78,6 +80,12 @@
       window.$scope.$digest();
       return element;
     };
+    return mocksObject;
+  }
+
+  function service(module, name, override, defaultMock) {
+    var mocksObject = window.tentacle.mock(module, name, override, defaultMock);
+    window.tentacle.inject();
     return mocksObject;
   }
 
