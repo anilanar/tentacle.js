@@ -112,7 +112,7 @@
     var dependencies = getDependencies(module, name);
     dependencies = _.difference(dependencies, mockExceptions);
     return _.chain(dependencies)
-      .reduce(function (mockObject, dependency) {
+      .reduce(function (mocksObject, dependency) {
         mocksObject[dependency] = defaultMock;
         return mocksObject;
       }, {})
