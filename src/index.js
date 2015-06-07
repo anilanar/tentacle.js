@@ -49,7 +49,8 @@
     injectDependency(name);
   }
 
-  function controller (module, name, override, defaultMock) {
+  function controller(module, name, override, defaultMock) {
+    angular.mock.module(module);
     window.tentacle.inject();
     injectDependency('$controller');
     var mocksObject = createMocksObject(module, name, override, defaultMock);
@@ -59,6 +60,23 @@
     });
     window.tentacle.controller.run = function () {
       window.$controller(name, mocksObject);
+    };
+    return mocksObject;
+  }
+
+  function directive(module, name, override, defaultMock) {
+    window.tentacle.mock(module, name, override, defaultMock);
+    window.tentacle.inject();
+    injectDependency('$compile');
+    var mocksObject = createMocksObject(module, name, override, defaultMock);
+    addToWindow('$scope', $rootScope.$new());
+    _.extend(mocksObject, {
+      $scope: window.$scope
+    });
+    window.tentacle.directive.run = function (element) {
+      element = window.$compile(element)($scope);
+      window.$scope.$digest();
+      return element;
     };
     return mocksObject;
   }
