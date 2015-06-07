@@ -33,7 +33,8 @@
   });
 
   function mock(module, name, override, defaultMock) {
-    var mocksObject = createMocksObject(dependencies, override, defaultMock);
+    angular.mock.module(module);
+    var mocksObject = createMocksObject(module, name, override, defaultMock);
     _.forEach(mocksObject, provideValue);
     return mocksObject;
   }
@@ -87,9 +88,8 @@
   }
 
   function createMocksObject(module, name, override, defaultMock) {
-    angular.mock.module(module);
     override = override || {};
-    defaultVal = defaultVal || {};
+    defaultMock = defaultMock || {};
 
     var dependencies = getDependencies(module, name);
     dependencies = _.difference(dependencies, mockExceptions);
