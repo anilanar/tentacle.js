@@ -10,7 +10,8 @@
 
   var globalInjects = [
     '$rootScope',
-    '$q'
+    '$q',
+    '$httpBackend'
   ];
 
   window.tentacle.mock = function (module, name, override, defaultMock) {
