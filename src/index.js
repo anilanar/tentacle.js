@@ -42,7 +42,7 @@
   }
 
   function getDependencies(module, name) {
-    var invokeQueue = angular.mdoule(moduleName)._invokeQueue;
+    var invokeQueue = angular.module(module)._invokeQueue;
     return _.chain(invokeQueue)
       .unzip().last()
       .find(function (config) {
