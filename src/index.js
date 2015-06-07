@@ -33,6 +33,7 @@
   window.tentacle.injectAll = function (module, name) {
     window.tentacle.inject();
     _.forEach(getDependencies(module, name), injectDependency);
+    injectDependency(name);
   };
 
   function injectDependency(dependency) {
