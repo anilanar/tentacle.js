@@ -30,6 +30,11 @@
     _.forEach(globalInjects, injectDependency);
   };
 
+  window.tentancle.injectAll = function (module, name) {
+    window.tentancle.inject();
+    _.forEach(getDependencies(module, name), injectDependency);
+  };
+
   function injectDependency(dependency) {
     angular.mock.inject([dependency, function (_dependency_) {
       window[dependency] = _dependency_;
