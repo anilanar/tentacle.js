@@ -13,7 +13,7 @@
     '$q'
   ];
 
-  window.tentancle.mock = function (module, name, override, defaultMock) {
+  window.tentacle.mock = function (module, name, override, defaultMock) {
     angular.mock.module(module);
     override = override || {};
     defaultVal = defaultVal || {};
@@ -30,8 +30,8 @@
     _.forEach(globalInjects, injectDependency);
   };
 
-  window.tentancle.injectAll = function (module, name) {
-    window.tentancle.inject();
+  window.tentacle.injectAll = function (module, name) {
+    window.tentacle.inject();
     _.forEach(getDependencies(module, name), injectDependency);
   };
 
