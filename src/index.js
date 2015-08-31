@@ -62,7 +62,9 @@
       $scope: window.$scope
     });
     window.tentacle.controller.run = function () {
-      return window.$controller(name, mocksObject);
+      var ctrl = window.$controller(name, mocksObject);
+      window.$scope.$digest();
+      return ctrl;
     };
     return mocksObject;
   }
