@@ -17,7 +17,8 @@
     globalInjects = [
       '$rootScope',
       '$q',
-      '$httpBackend'
+      '$httpBackend',
+      '$templateCache'
     ];
 
     addToWindow('tentacle', {});
