@@ -62,7 +62,7 @@
       $scope: window.$scope
     });
     window.tentacle.controller.run = function () {
-      window.$controller(name, mocksObject);
+      return window.$controller(name, mocksObject);
     };
     return mocksObject;
   }
