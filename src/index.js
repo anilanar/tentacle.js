@@ -11,14 +11,16 @@
       '$httpBackend',
       '$rootScope',
       '$q',
-      '$scope'
+      '$scope',
+      '$filter'
     ];
 
     globalInjects = [
       '$rootScope',
       '$q',
       '$httpBackend',
-      '$templateCache'
+      '$templateCache',
+      '$compile'
     ];
 
     addToWindow('tentacle', {});
