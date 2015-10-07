@@ -91,6 +91,7 @@
   function service(module, name, override, defaultMock) {
     var mocksObject = window.tentacle.mock(module, name, override, defaultMock);
     window.tentacle.inject();
+    injectDependency(name);
     return mocksObject;
   }
 
