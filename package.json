@@ -1,0 +1,47 @@
+{
+  "name": "tentacle.js",
+  "version": "0.0.16",
+  "description": "Auto mock/inject dependencies for Angular tests",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anilanar/tentacle.js.git"
+  },
+  "keywords": [
+    "angular",
+    "mock",
+    "inject",
+    "dependency",
+    "test"
+  ],
+  "author": "Anil Anar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anilanar/tentacle.js/issues"
+  },
+  "homepage": "https://github.com/anilanar/tentacle.js#readme",
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "chai": "^3.3.0",
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-istanbul": "^0.10.1",
+    "gulp-mocha": "^2.1.3",
+    "karma": "^0.13.10",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-mocha": "^0.2.0",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.1",
+    "sinon-chai": "^2.8.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

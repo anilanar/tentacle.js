@@ -1,0 +1,7 @@
+{
+  "undef": true,
+  "node": true,
+  "mocha": true,
+  "expr": true,
+  "unused": true
+}

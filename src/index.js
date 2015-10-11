@@ -1,42 +1,40 @@
-(function (window, angular) {
+'use strict';
 
-  var dirtyProperties,
-    mockExceptions,
-    globalInjects;
+  var _ = require('lodash');
+  module.exports = init;
 
-  beforeEach(function () {
-    dirtyProperties = [];
-    mockExceptions = [
-      '$http',
-      '$httpBackend',
-      '$rootScope',
-      '$q',
-      '$scope',
-      '$filter'
-    ];
+function init(window, angular) {
+  var dirtyProperties = [];
+  var mockExceptions = [
+    '$http',
+    '$httpBackend',
+    '$rootScope',
+    '$q',
+    '$scope',
+    '$filter'
+  ];
+  var globalInjects = [
+    '$rootScope',
+    '$q',
+    '$httpBackend',
+    '$templateCache',
+    '$compile'
+  ];
 
-    globalInjects = [
-      '$rootScope',
-      '$q',
-      '$httpBackend',
-      '$templateCache',
-      '$compile'
-    ];
-
-    addToWindow('tentacle', {});
-    addToWindow('async', async);
-    window.tentacle.mock = mock;
-    window.tentacle.inject = inject;
-    window.tentacle.injectAll = injectAll;
-    window.tentacle.controller = controller;
-    window.tentacle.directive = directive;
-    window.tentacle.service = service;
-    window.tentacle.factory = service;
-  });
-
-  afterEach(function () {
-    deleteDirtyProperties();
-  });
+  addToWindow('tentacle', {});
+  addToWindow('async', async);
+  window.tentacle.mock = mock;
+  window.tentacle.injectGlobals = injectGlobals;
+  window.tentacle.mockExceptions = mockExceptions;
+  window.tentacle.globalInjects = globalInjects;
+  window.tentacle.injectAll = injectAll;
+  window.tentacle.controller = controller;
+  window.tentacle.directive = directive;
+  window.tentacle.service = service;
+  window.tentacle.factory = service;
+  window.tentacle.reset = reset;
+  window.tentacle.mockExceptions = mockExceptions;
+  window.tentacle.globalInjects = globalInjects;
 
   function mock(module, name, override, defaultMock) {
     angular.mock.module(module);
@@ -45,22 +43,24 @@
     return mocksObject;
   }
 
-  function inject() {
+  function injectGlobals() {
     _.forEach(globalInjects, injectDependency);
   }
 
   function injectAll(module, name) {
-    window.tentacle.inject();
-    _.forEach(getDependencies(module, name), injectDependency);
+    window.tentacle.injectGlobals();
+    var deps = getDependencies(module, name);
+    var allDependencies = _.union(deps, globalInjects);
+    _.forEach(allDependencies, injectDependency);
     injectDependency(name);
   }
 
   function controller(module, name, override, defaultMock) {
     angular.mock.module(module);
-    window.tentacle.inject();
+    window.tentacle.injectGlobals();
     injectDependency('$controller');
     var mocksObject = createMocksObject(module, name, override, defaultMock);
-    addToWindow('$scope', $rootScope.$new());
+    addToWindow('$scope', window.$rootScope.$new());
     _.extend(mocksObject, {
       $scope: window.$scope
     });
@@ -74,14 +74,13 @@
 
   function directive(module, name, override, defaultMock) {
     var mocksObject = window.tentacle.mock(module, name, override, defaultMock);
-    window.tentacle.inject();
-    injectDependency('$compile');
-    addToWindow('$scope', $rootScope.$new());
+    window.tentacle.injectGlobals();
+    addToWindow('$scope', window.$rootScope.$new());
     _.extend(mocksObject, {
       $scope: window.$scope
     });
     window.tentacle.directive.run = function (element) {
-      element = window.$compile(element)($scope);
+      element = window.$compile(element)(window.$scope);
       window.$scope.$digest();
       return element;
     };
@@ -90,7 +89,7 @@
 
   function service(module, name, override, defaultMock) {
     var mocksObject = window.tentacle.mock(module, name, override, defaultMock);
-    window.tentacle.inject();
+    window.tentacle.injectGlobals();
     injectDependency(name);
     return mocksObject;
   }
@@ -107,7 +106,7 @@
     dirtyProperties.push(propertyName);
   }
 
-  function deleteDirtyProperties() {
+  function reset() {
     _.forEach(dirtyProperties, function (prop) {
       delete window[prop];
     });
@@ -135,6 +134,7 @@
   }
 
   function getDependencies(module, name) {
+
     var invokeQueue = angular.module(module)._invokeQueue;
     // depArr is an array-like object
     // it has no length property
@@ -151,4 +151,4 @@
       $provide.value(dependency, mock);
     });
   }
-})(window, angular);
+}
