@@ -35,7 +35,7 @@ gulp.task('mocha-coverage', ['pre-test'], function () {
 });
 
 gulp.task('browserify', function() {
-  return browserify('src/index.js')
+  return browserify('src/standalone.js')
     .bundle()
     .pipe(source('tentacle.js'))
     .pipe(gulp.dest('dist'));
@@ -50,7 +50,14 @@ gulp.task('browserify-test', function() {
 
 gulp.task('karma', ['browserify', 'browserify-test'], function (done) {
   new Karma({
-    configFile: __dirname + '/karma.conf.js',
+    configFile: __dirname + '/karma-unit.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
+gulp.task('integration', ['browserify'], function (done) {
+  new Karma({
+    configFile: __dirname + '/karma-integration.conf.js',
     singleRun: true
   }, done).start();
 });

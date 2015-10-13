@@ -27,6 +27,8 @@
   },
   "homepage": "https://github.com/anilanar/tentacle.js#readme",
   "devDependencies": {
+    "angular": "^1.4.7",
+    "angular-mocks": "^1.4.7",
     "browserify": "^11.2.0",
     "chai": "^3.3.0",
     "del": "^2.0.2",

@@ -38,6 +38,10 @@ describe('controllers', function () {
       expect(mocks.dep1).to.eql({});
     });
 
+    it('should not use the same object for default mocks', function () {
+      expect(mocks.dep0).to.not.equal(mocks.dep1);
+    });
+
     it('should create new scope', function () {
       expect(globalScope.$rootScope.$new).to.have.been.calledOnce;
     });

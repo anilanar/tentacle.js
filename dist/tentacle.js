@@ -12356,8 +12356,8 @@
 },{}],2:[function(require,module,exports){
 'use strict';
 
-  var _ = require('lodash');
-  module.exports = init;
+var _ = require('lodash');
+module.exports = init;
 
 function init(window, angular) {
   var dirtyProperties = [];
@@ -12476,13 +12476,12 @@ function init(window, angular) {
 
   function createMocksObject(module, name, override, defaultMock) {
     override = override || {};
-    defaultMock = defaultMock || {};
 
     var dependencies = getDependencies(module, name);
     dependencies = _.difference(dependencies, mockExceptions);
     return _.chain(dependencies)
       .reduce(function (mocksObject, dependency) {
-        mocksObject[dependency] = defaultMock;
+        mocksObject[dependency] = defaultMock || {};
         return mocksObject;
       }, {})
       .assign(override)
@@ -12507,4 +12506,10 @@ function init(window, angular) {
   }
 }
 
-},{"lodash":1}]},{},[2]);
+},{"lodash":1}],3:[function(require,module,exports){
+(function (global){
+var tentacle = require('./index');
+tentacle(global.window, global.window.angular);
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./index":2}]},{},[3]);
