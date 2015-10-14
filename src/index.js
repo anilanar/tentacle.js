@@ -33,8 +33,6 @@ function init(window, angular) {
   window.tentacle.service = service;
   window.tentacle.factory = service;
   window.tentacle.reset = reset;
-  window.tentacle.mockExceptions = mockExceptions;
-  window.tentacle.globalInjects = globalInjects;
 
   function mock(module, name, override, defaultMock) {
     angular.mock.module(module);
