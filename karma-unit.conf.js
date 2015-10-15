@@ -5,6 +5,15 @@ module.exports = function(config) {
     files: [
       '.tmp/test.js'
     ],
-    browsers: ['Chrome'],
+    browsers: ['Firefox'],
+    singleRun: true,
+    reporters: [
+      'mocha'
+    ],
+    plugins: [
+      'karma-mocha',
+      'karma-firefox-launcher',
+      'karma-mocha-reporter'
+    ]
   });
 };

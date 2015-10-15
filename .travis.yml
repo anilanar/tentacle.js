@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "stable"
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm install -g gulp
+  - npm install
+script: npm run-script ci
+addons:
+  firefox: "latest"

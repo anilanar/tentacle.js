@@ -11,6 +11,15 @@ module.exports = function(config) {
       'test/integration/app.js',
       'test/integration/index.js'
     ],
-    browsers: ['Chrome'],
+    browsers: ['Firefox'],
+    singleRun: true,
+    reporters: [
+      'mocha'
+    ],
+    plugins: [
+      'karma-mocha',
+      'karma-firefox-launcher',
+      'karma-mocha-reporter'
+    ]
   });
 };
