@@ -1,6 +1,6 @@
 {
   "name": "tentacle.js",
-  "version": "0.0.16",
+  "version": "0.1.0",
   "description": "Auto mock/inject dependencies for Angular tests",
   "main": "src/index.js",
   "directories": {
