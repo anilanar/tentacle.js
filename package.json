@@ -1,0 +1,54 @@
+{
+  "name": "tentacle.js",
+  "version": "0.0.16",
+  "description": "Auto mock/inject dependencies for Angular tests",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "gulp browserify",
+    "mocha": "./node_modules/mocha/bin/mocha --reporter nyan",
+    "mocha-ci": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec test/unit/**/*",
+    "coverage": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "karma": "gulp browserify-test && ./node_modules/karma/bin/karma start karma-unit.conf.js",
+    "integration": "gulp browserify && ./node_modules/karma/bin/karma start karma-integration.conf.js",
+    "ci": "npm run-script mocha-ci && npm run-script karma && npm run-script integration && npm run-script coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anilanar/tentacle.js.git"
+  },
+  "keywords": [
+    "angular",
+    "mock",
+    "inject",
+    "dependency",
+    "test"
+  ],
+  "author": "Anil Anar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anilanar/tentacle.js/issues"
+  },
+  "homepage": "https://github.com/anilanar/tentacle.js#readme",
+  "devDependencies": {
+    "angular": "^1.4.7",
+    "angular-mocks": "^1.4.7",
+    "browserify": "^11.2.0",
+    "chai": "^3.3.0",
+    "coveralls": "^2.11.4",
+    "gulp": "^3.9.0",
+    "istanbul": "^0.3.22",
+    "karma": "^0.13.10",
+    "karma-chai": "^0.1.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^1.1.1",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.1",
+    "sinon-chai": "^2.8.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
