@@ -12489,12 +12489,14 @@ function init(window, angular) {
   function getDependencies(module, name) {
 
     var invokeQueue = angular.module(module)._invokeQueue;
-    return _.chain(invokeQueue)
+    // depArr is an array-like object
+    // it has no length property
+    var depArr = _.chain(invokeQueue)
       .unzip().last()
       .find(function (config) {
         return _.isEqual(config[0], name);
-      })
-      .last().initial().value();
+      }).value();
+    return _.initial(depArr[1]);
   }
 
   function provideValue(mock, dependency) {

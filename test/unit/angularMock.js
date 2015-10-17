@@ -9,7 +9,8 @@ function mock(provider, type, name, deps) {
   // notation of angular.
   deps.push(function(){});
   // [name, deps] mimics (name, [deps.., function(deps {..})]) notation.
-  return [provider, type, [name, deps]];
+  // {0: name, 1:deps} is an array-like object that is used by Angular.
+  return [provider, type, {0: name, 1:deps}];
 }
 
 // util functions for easy mocking, respecting actual values in angular's
