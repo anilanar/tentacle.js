@@ -121,13 +121,12 @@
 
   function createMocksObject(module, name, override, defaultMock) {
     override = override || {};
-    defaultMock = defaultMock || {};
 
     var dependencies = getDependencies(module, name);
     dependencies = _.difference(dependencies, mockExceptions);
     return _.chain(dependencies)
       .reduce(function (mocksObject, dependency) {
-        mocksObject[dependency] = defaultMock;
+        mocksObject[dependency] = defaultMock || {};
         return mocksObject;
       }, {})
       .assign(override)
