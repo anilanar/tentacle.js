@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/anilanar/tentacle.js.svg?branch=master)](https://travis-ci.org/anilanar/tentacle.js)
 [![Coverage Status](https://coveralls.io/repos/anilanar/tentacle.js/badge.svg?branch=master&service=github)](https://coveralls.io/github/anilanar/tentacle.js?branch=master)
+[![Issue Count](https://codeclimate.com/github/anilanar/tentacle.js/badges/issue_count.svg)](https://codeclimate.com/github/anilanar/tentacle.js)
 [![npm version](https://badge.fury.io/js/tentacle.js.svg)](https://badge.fury.io/js/tentacle.js)
 
 This utility library is unstable and experimental. You don't have to use it for all of your test suites. Give it a try for testing one of your services/controllers/directives!
