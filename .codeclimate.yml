@@ -1,0 +1,15 @@
+---
+engines:
+  csslint:
+    enabled: false
+  eslint:
+    enabled: true
+  fixme:
+    enabled: false
+ratings:
+  paths:
+  - "**.js"
+exclude_paths:
+- coverage/**/*
+- dist/**/*
+- test/**/*
