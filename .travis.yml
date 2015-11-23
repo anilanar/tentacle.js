@@ -9,3 +9,5 @@ before_script:
 script: npm run-script ci
 addons:
   firefox: "latest"
+  code_climate:
+    repo_token: ec4ea002c11e996aa39ecd2de47f2f7e64f30d480908acfae5870f91a47ec4ce
