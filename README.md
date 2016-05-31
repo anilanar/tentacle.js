@@ -52,7 +52,7 @@ var angular = require('angular');
 var globalScope = {}; // you can use global too,
                       // similar to window object
                       // in browsers
-tentacleInit(global, angular)
+tentacleInit(globalScope, angular)
 
 // You can use globalScope.tentacle
 
